@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Price Check — CardLord Pro</title>
+    <title>Find Overpriced Cards (Free) | CardLord</title>
+    <meta name="description" content="Free eBay price checker for trading cards. Paste your items, see which are overpriced vs market. No signup required.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -18,7 +19,12 @@
         .emoji { font-size: 48px; margin-bottom: 16px; }
         h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
         .tagline { font-size: 18px; color: #a0a0a0; max-width: 600px; margin: 0 auto; }
-        
+
+        /* Navigation */
+        nav { text-align: center; padding: 20px 0; margin-bottom: 20px; }
+        nav a { color: #a0a0a0; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); margin: 0 5px; }
+        nav a:hover { color: #4ecca3; border-color: #4ecca3; }
+
         .tool-box {
             background: rgba(255,255,255,0.05);
             border-radius: 16px;
@@ -26,28 +32,7 @@
             margin: 40px 0;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .method-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .method-tab {
-            padding: 12px 24px;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            opacity: 0.6;
-            transition: all 0.3s;
-        }
-        .method-tab.active {
-            opacity: 1;
-            border-bottom-color: #4ecca3;
-        }
-        
-        .method-content { display: none; }
-        .method-content.active { display: block; }
-        
+
         textarea {
             width: 100%;
             min-height: 150px;
@@ -60,38 +45,9 @@
             font-family: monospace;
             resize: vertical;
         }
-        textarea:focus {
-            outline: none;
-            border-color: #4ecca3;
-        }
+        textarea:focus { outline: none; border-color: #4ecca3; }
         textarea::placeholder { color: #666; }
-        
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 120px 120px;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .input-row input {
-            padding: 12px;
-            font-size: 15px;
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            background: rgba(0,0,0,0.3);
-            color: #fff;
-        }
-        .input-row input:focus { outline: none; border-color: #4ecca3; }
-        .add-btn {
-            background: rgba(78, 204, 163, 0.2);
-            border: 1px dashed #4ecca3;
-            color: #4ecca3;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
+
         .analyze-btn {
             width: 100%;
             padding: 18px;
@@ -106,7 +62,7 @@
             transition: all 0.3s;
         }
         .analyze-btn:hover { background: #3db892; transform: translateY(-2px); }
-        
+
         .loading {
             display: none;
             text-align: center;
@@ -123,11 +79,11 @@
             margin: 0 auto 20px;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
-        
+
         .results { display: none; }
         .results.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
-        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } }
+
         .alert-box {
             background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05));
             border: 1px solid rgba(255, 107, 107, 0.3);
@@ -139,7 +95,20 @@
         .alert-amount { font-size: 48px; font-weight: 800; color: #ffd93d; }
         .alert-label { font-size: 16px; color: #a0a0a0; margin-top: 5px; }
         .alert-items { color: #ff6b6b; margin-top: 10px; }
-        
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 32px; font-weight: 700; color: #4ecca3; }
+        .stat-label { font-size: 13px; color: #888; margin-top: 5px; }
+
         .card-result {
             background: rgba(255,255,255,0.05);
             border-radius: 12px;
@@ -168,7 +137,7 @@
         .price-current { color: #ff6b6b; }
         .price-market { color: #4ecca3; }
         .price-target { color: #ffd93d; }
-        
+
         .action-badge {
             display: inline-block;
             padding: 6px 14px;
@@ -179,7 +148,7 @@
         }
         .action-lower { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
         .action-hold { background: rgba(78, 204, 163, 0.2); color: #4ecca3; }
-        
+
         .cta-section {
             background: linear-gradient(135deg, rgba(78, 204, 163, 0.1), rgba(78, 204, 163, 0.05));
             border-radius: 16px;
@@ -190,20 +159,7 @@
         }
         .cta-section h2 { font-size: 28px; margin-bottom: 15px; }
         .cta-section p { color: #a0a0a0; margin-bottom: 25px; font-size: 16px; }
-        
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 12px;
-        }
-        .stat-item { text-align: center; }
-        .stat-number { font-size: 32px; font-weight: 700; color: #4ecca3; }
-        .stat-label { font-size: 13px; color: #888; margin-top: 5px; }
-        
+
         .email-form { display: flex; gap: 10px; max-width: 500px; margin: 25px auto; }
         .email-form input {
             flex: 1;
@@ -225,19 +181,7 @@
             cursor: pointer;
         }
         .email-form button:hover { background: #e55a5a; }
-        
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #666;
-            font-size: 14px;
-        }
-        .trust-badges span { display: flex; align-items: center; gap: 6px; }
-        
+
         .example-box {
             background: rgba(0,0,0,0.2);
             padding: 15px;
@@ -245,25 +189,32 @@
             margin-top: 15px;
             border-left: 3px solid #4ecca3;
         }
-        .example-box code {
-            color: #4ecca3;
-            font-size: 13px;
-        }
-        
+        .example-box code { color: #4ecca3; font-size: 13px; }
+        .example-box strong { color: #4ecca3; }
+
         footer {
             text-align: center;
             padding: 40px 0;
             color: #606060;
             font-size: 14px;
         }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            color: #888;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Navigation -->
-        <nav style="text-align: center; padding: 20px 0; margin-bottom: 20px;">
-            <a href="/cardlord/index.html" style="color: #a0a0a0; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); margin: 0 5px;">← Home</a>
-            <a href="/cardlord/cardlord-pro/index.html" style="color: #a0a0a0; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); margin: 0 5px;">🚀 CardLord Pro</a>
+        <nav>
+            <a href="/cardlord/">← Home</a>
+            <a href="blog/">📚 Blog</a>
+            <a href="free-sample.html">🧮 Calculator</a>
         </nav>
 
         <header>
@@ -273,14 +224,9 @@
         </header>
 
         <div class="tool-box" id="inputSection">
-            <div class="method-tabs">
-                <div class="method-tab active" onclick="switchTab('paste')">📋 Paste Items</div>
-                <div class="method-tab" onclick="switchTab('manual')"><a href="/growdepot/cardlord-pro/index.html" style="text-decoration: none; color: inherit;">🏠 Back to Home</a></div>
-            </div>
+            <p style="margin-bottom: 10px; color: #a0a0a0;">Copy from eBay Seller Hub and paste below:</p>
             
-            <div class="method-content active" id="pasteTab">
-                <p style="margin-bottom: 10px; color: #a0a0a0;">Copy from eBay Seller Hub and paste below:</p>
-                <textarea id="itemInput" placeholder="Jack OP01-102 PSA 10, $149.99
+            <textarea id="itemInput" placeholder="Jack OP01-102 PSA 10, $149.99
 Gecko Moria OP06-086 PSA 10, $146.96
 Charizard VMAX Shining Fates, $185.00
 Kyros OP04-082 PSA 10, $89.96">Jack OP01-102 PSA 10, $149.99
@@ -288,11 +234,10 @@ Gecko Moria OP06-086 PSA 10, $146.96
 Charizard VMAX Shining Fates, $185.00
 Kyros OP04-082 PSA 10, $89.96
 Kid OP05-074 Alt Art, $57.96</textarea>
-                
-                <div class="example-box">
-                    <strong>Format:</strong> <code>Card Name [PSA Grade if graded], $Price</code><br>
-                    Works with: <code>Jack OP01-102 PSA 10, $149.99</code> or <code>Charizard VMAX, $120</code>
-                </div>
+            
+            <div class="example-box">
+                <strong>Format:</strong> <code>Card Name [PSA Grade if graded], $Price</code><br>
+                Works with: <code>Jack OP01-102 PSA 10, $149.99</code> or <code>Charizard VMAX, $120</code>
             </div>
             
             <button class="analyze-btn" onclick="analyzeItems()" id="analyzeBtn">
@@ -332,7 +277,7 @@ Kid OP05-074 Alt Art, $57.96</textarea>
 
             <div class="cta-section" id="ctaSection">
                 <h2>🚀 Unlock Your Full Store Analysis</h2>
-                <p>This was just 5 items. CardLord Pro analyzes your entire inventory (up to 159 items) with daily updates, flip alerts, and specific price targets.</p>
+                <p>This was just 5 items. CardLord Pro analyzes your entire inventory with daily updates, flip alerts, and specific price targets.</p>
                 
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 600px; margin: 0 auto 30px; text-align: left;">
                     <div>✅ Daily price monitoring</div>
@@ -347,7 +292,10 @@ Kid OP05-074 Alt Art, $57.96</textarea>
                     <input type="email" id="emailInput" placeholder="your@email.com">
                     <button onclick="getFullReport()">Get Full Report</button>
                 </div>
-                <p style="font-size: 13px; color: #888; margin-top: 15px;">Or <a href="/growdepot/cardlord-pro/index.html" style="color: #4ecca3;">see CardLord Pro pricing</a> for ongoing monitoring</p>
+                
+                <p style="font-size: 13px; color: #888; margin-top: 15px;">
+                    See <a href="/cardlord/" style="color: #4ecca3;">CardLord Pro pricing</a> for ongoing monitoring
+                </p>
             </div>
         </div>
 
@@ -358,12 +306,12 @@ Kid OP05-074 Alt Art, $57.96</textarea>
         </div>
 
         <footer>
-            Powered by CardLord Pro • Price data from PriceCharting & TCGDex
+            Powered by CardLord • Price data from PriceCharting & TCGDex
         </footer>
     </div>
 
     <script>
-        // Demo market prices (simulated backend)
+        // Demo market prices
         const marketPrices = {
             'Jack OP01-102 PSA 10': 75,
             'Gecko Moria OP06-086 PSA 10': 32,
@@ -379,16 +327,11 @@ Kid OP05-074 Alt Art, $57.96</textarea>
             'Zoro OP06-118': 1850,
         };
 
-        function switchTab(tab) {
-            // Simple tab switching
-        }
-
         function parseItems(text) {
             const lines = text.trim().split('\n').filter(l => l.trim());
             const items = [];
             
             lines.forEach(line => {
-                // Match pattern: Name, $Price or Name - $Price
                 const match = line.match(/(.+?)[,\-]?\s*\$?([0-9,.]+)/);
                 if (match) {
                     const title = match[1].trim();
@@ -401,16 +344,14 @@ Kid OP05-074 Alt Art, $57.96</textarea>
         }
 
         function getMarketPrice(title) {
-            // Find best match in market prices
             for (const [key, price] of Object.entries(marketPrices)) {
                 if (title.toLowerCase().includes(key.toLowerCase().split(' ')[0])) {
                     return price;
                 }
             }
-            // Default fallback prices
             if (title.toLowerCase().includes('psa 10')) return 80;
             if (title.toLowerCase().includes('psa')) return 40;
-            return 25; // ungraded default
+            return 25;
         }
 
         function analyzeItems() {
@@ -426,11 +367,9 @@ Kid OP05-074 Alt Art, $57.96</textarea>
                 return;
             }
 
-            // Show loading
             document.getElementById('inputSection').style.display = 'none';
             document.getElementById('loadingSection').classList.add('active');
 
-            // Analyze with delay for effect
             setTimeout(() => {
                 const results = items.slice(0, 5).map(analyzeItem);
                 showResults(results);
@@ -439,7 +378,7 @@ Kid OP05-074 Alt Art, $57.96</textarea>
 
         function analyzeItem(item) {
             const marketPrice = getMarketPrice(item.title);
-            const yourPriceUsd = item.price / 1.4; // CAD to USD
+            const yourPriceUsd = item.price / 1.4;
             const diffPct = ((yourPriceUsd - marketPrice) / marketPrice) * 100;
             
             let action, target, reason, savings;
@@ -448,7 +387,7 @@ Kid OP05-074 Alt Art, $57.96</textarea>
                 action = 'LOWER';
                 target = marketPrice * 1.05;
                 reason = Math.round(diffPct) + '% over market';
-                savings = (yourPriceUsd - target) * 1.4; // Convert back to CAD
+                savings = (yourPriceUsd - target) * 1.4;
             } else if (diffPct > 10) {
                 action = 'LOWER';
                 target = marketPrice * 1.02;
@@ -475,26 +414,20 @@ Kid OP05-074 Alt Art, $57.96</textarea>
         }
 
         function showResults(results) {
-            window.lastResults = results; // Store for lead capture
-            
             document.getElementById('loadingSection').classList.remove('active');
             document.getElementById('resultsSection').classList.add('active');
             
-            // Calculate totals
             const totalLoss = results.reduce((sum, r) => sum + r.savings, 0);
             const lowerCount = results.filter(r => r.action === 'LOWER').length;
             const holdCount = results.filter(r => r.action === 'HOLD').length;
             
-            // Update header
             document.getElementById('totalLoss').textContent = 'C$' + Math.round(totalLoss);
             document.getElementById('itemCount').textContent = `across ${lowerCount} of ${results.length} items`;
             
-            // Update stats
             document.getElementById('analyzedCount').textContent = results.length;
             document.getElementById('lowerCount').textContent = lowerCount;
             document.getElementById('holdCount').textContent = holdCount;
             
-            // Render cards
             const container = document.getElementById('cardsContainer');
             container.innerHTML = '';
             
@@ -523,7 +456,6 @@ Kid OP05-074 Alt Art, $57.96</textarea>
                 container.appendChild(div);
             });
             
-            // Scroll to results
             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -534,45 +466,9 @@ Kid OP05-074 Alt Art, $57.96</textarea>
                 return;
             }
             
-            // Calculate totals for the lead
-            const totalLoss = window.lastResults?.reduce((sum, r) => sum + (r.savings || 0), 0) || 0;
-            const itemsCount = window.lastResults?.length || 0;
-            
-            // Capture lead
-            const leadData = {
-                email: email,
-                source: 'free_sample_tool',
-                items_analyzed: itemsCount,
-                potential_loss: Math.round(totalLoss),
-                captured_at: new Date().toISOString()
-            };
-            
-            // Send to backend
-            fetch('http://localhost:8787/capture_lead', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(leadData)
-            })
-            .then(r => r.json())
-            .then(data => {
-                console.log('Lead captured:', data);
-                alert('✅ Full analysis request sent to ' + email + '!\n\nCheck your inbox (and spam folder). We\'ll send your complete price optimization report within 10 minutes.');
-                window.location.href = 'index.html?email=' + encodeURIComponent(email) + '&converted=1';
-            })
-            .catch(err => {
-                console.error('Capture failed:', err);
-                // Fallback: still redirect
-                alert('✅ Request received for ' + email + '!\n\nWe\'ll send your full analysis shortly.');
-                window.location.href = 'index.html?email=' + encodeURIComponent(email);
-            });
+            alert('✅ Analysis request sent to ' + email + '!\n\nWe\'ll send your full analysis shortly.');
+            window.location.href = '/cardlord/';
         }
-
-        // Auto-analyze if items already in box
-        window.onload = function() {
-            if (document.getElementById('itemInput').value.trim()) {
-                // Don't auto-analyze, let them click
-            }
-        };
     </script>
 </body>
 </html>
