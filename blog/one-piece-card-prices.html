@@ -2,418 +2,146 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Piece Card Prices: Complete TCG Pricing Guide 2024 | CardLord Pro</title>
-    <meta name="description" content="One Piece TCG price guide for OP01-OP08 sets. Learn how to price alt arts, manga panels, and leader cards. Market data and selling strategies.">
-    <meta name="keywords" content="one piece card prices, one piece tcg value, op01 card prices, alt art one piece, manga panel cards, one piece leader cards">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="One Piece Card Prices: Complete TCG Pricing Guide 2024">
-    <meta property="og:description" content="Price data for One Piece TCG sets OP01-OP08. Alt arts, leaders, and secret rares.">
-    <meta property="og:type" content="article">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>One Piece Card Prices | CardLord Pro</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #0a0a14; --card: #13132a; --border: #1e1e3a;
+            --text: #e0e0f0; --text-dim: #8888a0; --accent: #4ecca3;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background: #f8fafc;
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10,10,20,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
         }
+        .logo { font-size: 1.1rem; font-weight: 700; }
+        .logo span { color: var(--accent); }
+        .nav-link { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        .container { padding: 70px 16px 40px; max-width: 700px; margin: 0 auto; }
+        
+        .hero { padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+        .hero h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .hero .meta { color: var(--text-dim); font-size: 0.85rem; }
+        
+        h2 { font-size: 1.1rem; font-weight: 600; margin: 24px 0 12px; color: var(--accent); }
+        p { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 16px; }
+        
+        .price-table {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 10px; overflow: hidden; margin: 20px 0;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #1e3a5f 0%, #c41e3a 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        .price-row {
+            display: flex; justify-content: space-between;
+            padding: 12px 16px; border-bottom: 1px solid var(--border);
         }
-        
-        .header h1 {
-            font-size: 2em;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-        
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .content {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: -30px;
-        }
-        
-        h2 {
-            color: #1e3a5f;
-            margin: 30px 0 15px;
-            font-size: 1.6em;
-        }
-        
-        h3 {
-            color: #444;
-            margin: 25px 0 10px;
-            font-size: 1.3em;
-        }
-        
-        p {
-            margin-bottom: 15px;
-        }
-        
-        ul, ol {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-        
-        li {
-            margin-bottom: 8px;
+        .price-row:last-child { border-bottom: none; }
+        .card-name { font-size: 0.9rem; }
+        .card-price { font-size: 0.9rem; color: var(--accent); font-weight: 600; }
+        .price-header {
+            background: rgba(78,204,163,0.1); font-weight: 600; color: var(--text);
         }
         
         .cta-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin: 40px 0;
-            text-align: center;
+            background: linear-gradient(135deg, rgba(78,204,163,0.15) 0%, rgba(78,204,163,0.05) 100%);
+            border: 1px solid var(--accent); border-radius: 10px; padding: 20px;
+            margin: 30px 0; text-align: center;
+        }
+        .cta-box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+        .cta-box p { font-size: 0.85rem; margin-bottom: 14px; }
+        .cta-box a {
+            display: inline-block; background: var(--accent); color: var(--bg);
+            text-decoration: none; padding: 12px 24px; border-radius: 8px;
+            font-weight: 700; font-size: 0.95rem;
         }
         
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 15px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-top: 15px;
-        }
-        
-        .highlight-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        .price-table th {
-            background: #1e3a5f;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-        
-        .price-table td {
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .price-table tr:hover {
-            background: #f9fafb;
-        }
-        
-        .rarity-manga { color: #dc2626; font-weight: bold; }
-        .rarity-alt { color: #7c3aed; font-weight: bold; }
-        .rarity-secret { color: #ea580c; font-weight: bold; }
-        
-        .toc {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 30px 0;
-        }
-        
-        .toc a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .tag {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            font-weight: 600;
-            margin-left: 8px;
-        }
-        
-        .tag-hot { background: #fee2e2; color: #dc2626; }
-        
-        .footer {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-        
-        .footer a {
-            color: #667eea;
-        }
+        footer { text-align: center; padding: 30px 20px; color: var(--text-dim); font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 40px; }
+        footer a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <h1>One Piece Card Prices: Complete TCG Pricing Guide 2024</h1>
-            <p>Real market data for OP01-OP08. How to price alt arts, manga panels, and chase cards.</p>
-        </div>
+    <div class="topbar">
+        <a href="./" class="nav-link">← Blog</a>
+        <div class="logo">Card<span>Lord</span></div>
+        <a href="../free-sample.html" class="nav-link">Try Free</a>
     </div>
     
     <div class="container">
-        <div class="content">
-            <p><strong>One Piece TCG is exploding.</strong> What sold for $50 last month hits $200 today. The market moves fast — and most sellers are pricing blind.</p>
-            
-            <p>This guide breaks down current prices for every major One Piece TCG set, from Romance Dawn (OP01) to the latest releases. Whether you're buying, selling, or collecting, here's what the cards are actually worth.</p>
-            
-            <div class="toc">
-                <strong>Table of Contents:</strong>
-                <ul>
-                    <li><a href="#why-prices-change">Why One Piece Prices Change So Fast</a></li>
-                    <li><a href="#op01-romance-dawn">OP01 Romance Dawn Prices</a></li>
-                    <li><a href="#manga-panels">Manga Panel Cards (The Chase)</a></li>
-                    <li><a href="#alt-arts">Alt Art Premium Cards</a></li>
-                    <li><a href="#leaders">Leader Card Prices</a></li>
-                    <li><a href="#grading">PSA 10 vs Raw: Is Grading Worth It?</a></li>
-                    <li><a href="#pricing-tips">How to Price One Piece Cards for eBay</a></li>
-                </ul>
-            </div>
-            
-            <h2 id="why-prices-change">Why One Piece TCG Prices Change So Fast</h2>
-            
-            <p>One Piece TCG launched in North America in December 2022. Unlike Pokemon's decades-long history, this market is <strong>just getting started</strong>. That volatility creates opportunity — but only if you track it.</p>
-            
-            <h3>Key Price Drivers:</h3>
-            
-            <ul>
-                <li><strong>Set releases:</strong> Every new set shifts values. OP01 cards spiked when OP02 released.</li>
-                <li><strong>Meta changes:</strong> Tournament results impact prices overnight. Luffy decks winning? Leader prices jump.</li>
-                <li><strong>Anime hype:</strong> One Piece anime episodes drive card interest. Gear 5 moments = card spikes.</li>
-                <li><strong>Print runs:</strong> Early sets (OP01-OP03) have smaller print runs = higher scarcity.</li>
-            </ul>
-            
-            <h2 id="op01-romance-dawn">OP01 Romance Dawn: The Premium Set</h2>
-            
-            <p>OP01 is the original set. Lower print run + first edition status = premium prices.</p>
-            
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Card</th>
-                        <th>Rarity</th>
-                        <th>Raw Price</th>
-                        <th>PSA 10</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Shanks (Leader)</td>
-                        <td>Leader</td>
-                        <td>$15-25</td>
-                        <td>-**</td>
-                    </tr>
-                    <tr>
-                        <td>Jack OP01-102</td>
-                        <td>SR</td>
-                        <td>$5-8</td>
-                        <td>$70-85</td>
-                    </tr>
-                    <tr>
-                        <td>Luffy (OP01-001)</td>
-                        <td>R</td>
-                        <td>$1-3</td>
-                        <td>$20-30</td>
-                    </tr>
-                    <tr>
-                        <td>Nami Alt Art</td>
-                        <td><span class="rarity-alt">Alt Art</span></td>
-                        <td>$150-250</td>
-                        <td>$400-600</td>
-                    </tr>
-                    <tr>
-                        <td>Shanks Alt Art</td>
-                        <td><span class="rarity-alt">Alt Art</span></td>
-                        <td>$200-350</td>
-                        <td>$800-1,200</td>
-                    </tr>
-                    <tr>
-                        <td>Monkey D. Luffy Manga</td>
-                        <td><span class="rarity-manga">Manga</span></td>
-                        <td>$800-1,500</td>
-                        <td>$3,000-5,000</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <p><small>**Prices fluctuate daily. Check current market data before buying/selling.</small></p>
-            
-            <h2 id="manga-panels">Manga Panel Cards: The True Chase</h2>
-            
-            <p>Manga panels are the holy grails of One Piece TCG. Each set has 1-3 secret rares featuring manga artwork instead of anime renders.</p>
-            
-            <div class="highlight-box">
-                <strong>🎯 Key Manga Panels by Set:</strong><br>
-                <strong>OP01:</strong> Monkey D. Luffy ($800-1,500 raw)<br>
-                <strong>OP02:>> Trafalgar Law ($400-800 raw)<br>
-                <strong>OP03:</strong> Charlotte Katakuri ($300-600 raw)<br>
-                <strong>OP04:</strong> Gol D. Roger ($500-900 raw)
-            </div>
-            
-            <p><strong>Why so expensive?</strong> 1 per case (12 boxes) pull rate. That scarcity drives the premium.</p>
-            
-            <h2 id="alt-arts">Alt Art Premium Cards</h2>
-            
-            <p>Alt arts feature alternate artwork and textured foil. They're not as rare as manga panels, but still chase cards.</p>
-            
-            <h3>Most Valuable Alt Arts:</h3>
-            
-            <ul>
-                <li><strong>Shanks (OP01):</strong> $200-350 raw | $800-1,200 PSA 10</li>
-                <li><strong>Nami (OP01):</strong> $150-250 raw | $400-600 PSA 10</li>
-                <li><strong>Sanji (OP02):</strong> $80-150 raw | $300-500 PSA 10</li>
-                <li><strong>Zoro (OP03):</strong> $60-120 raw | $250-400 PSA 10</li>
-                <li><strong>Robin (OP04):</strong> $40-80 raw | $150-250 PSA 10</li>
-            </ul>
-            
-            <p><strong>Pricing tip:</strong> Alt arts hold value better than regular SRs. Even if the meta shifts, collectors want the art.</p>
-            
-            <h2 id="leaders">Leader Card Tier List</h2>
-            
-            <p>Leader prices fluctuate with competitive play. Here's the current meta:</p>
-            
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Leader</th>
-                        <th>Tier</th>
-                        <th>Price Range</th>
-                        <th>Meta Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Shanks (OP01)</td>
-                        <td>🔴 Tier 1</td>
-                        <td>$15-25</td>
-                        <td>Competitively dominant</td>
-                    </tr>
-                    <tr>
-                        <td>Kaido (OP01)</td>
-                        <td>🔴 Tier 1</td>
-                        <td>$12-20</td>
-                        <td>Strong control deck</td>
-                    </tr>
-                    <tr>
-                        <td>Law (OP02)</td>
-                        <td>🟡 Tier 2</td>
-                        <td>$10-18</td>
-                        <td>Combo focused</td>
-                    </tr>
-                    <tr>
-                        <td>Zoro (OP03)</td>
-                        <td>🟡 Tier 2</td>
-                        <td>$8-15</td>
-                        <td>Aggro build</td>
-                    </tr>
-                    <tr>
-                        <td>Luffy (OP01)</td>
-                        <td>🟢 Casual</td>
-                        <td>$5-10</td>
-                        <td>Collector favorite</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h2 id="grading">PSA 10 vs Raw: Should You Grade?</h2>
-            
-            <p>Grading makes sense for high-end cards, but it's not free money.</p>
-            
-            <h3>When to Grade:</h3>
-            
-            <ul>
-                <li>Cards worth $100+ raw (justifies $50 grading cost)</li>
-                <li>Alt arts and manga panels (biggest PSA premiums)</li>
-                <li>Cards pulled fresh from pack (centered, pristine)</li>
-            </ul>
-            
-            <h3>When to Skip Grading:</h3>
-            
-            <ul>
-                <li>Cards under $50 raw (grading eats profit)</li>
-                <li>Visible edge wear or surface scratches</li>
-                <li>Off-center cuts (automatic 8 or lower)</li>
-            </ul>
-            
-            <div class="highlight-box">
-                <strong>Grading Math:</strong><br>
-                Cost: $50 (PSA) + shipping + insurance<br>
-                Break even: Card must sell for $100+ more graded<br>
-                Risk: 30% of cards get PSA 9 (minimal premium)
-            </div>
-            
-            <h2 id="pricing-tips">How to Price One Piece Cards for eBay</h2>
-            
-            <p>The One Piece market moves <strong>fast</strong>. A card worth $50 on Monday hits $120 on Friday if a new deck list wins a tournament.</p>
-            
-            <h3>My Pricing Strategy:</h3>
-            
-            <ol>
-                <li><strong>Check PriceCharting</strong> — aggregates eBay sold data</li>
-                <li><strong>Filter by grade</strong> — PSA 10 vs raw are different markets</li>
-                <li><strong>Look at 7-day trends</strong> — older data may be stale</li>
-                <li><strong>Price 2% below current market</strong> — captures the algorithm boost</li>
-                <li><strong>Reprice weekly</strong> — this market shifts constantly</li>
-            </ol>
-            
-            <p>The sellers making money? They're pricing actively. The ones sitting on unsold inventory? They listed 3 months ago and forgot.</p>
-            
-            <div class="cta-box">
-                <h3>🚀 Bulk Seller? Automate Your Pricing</h3>
-                <p>If you're managing 20+ One Piece listings, weekly price checks eat your weekend. CardLord Pro monitors your inventory and sends a brief every Monday with exact "Lower/Hold" recommendations.</p>
-                <p>Catch price spikes before competition. Fix overpriced cards before they sit 90 days.</p>
-                <a href="https://m777sys.github.io/cardlord/" class="cta-button">See How It Works →</a>
-            </div>
-            
-            <h2>Final Thoughts</h2>
-            
-            <p>One Piece TCG is the fastest growing card game in North America. Early sets (OP01-OP03) are already climbing. New sets (OP05+) offer fresh opportunities.</p>
-            
-            <p>The key to profit? <strong>Speed</strong>. Fast price checks. Fast repricing. Fast sales.</p>
-            
-            <p>Track the market. Stay current. Cash in.</p>
-            
-            <hr>
-            
-            <p><small><strong>Disclaimer:</strong> Prices are estimates based on market data. Always verify current values before buying or selling. Market conditions change daily.</small></p>
+        <div class="hero">
+            <h1>One Piece Card Prices: OP01-OP06 Guide</h1>
+            <div class="meta">February 2026 • Market Analysis</div>
         </div>
-    </div>
-    
-    <div class="footer">
-        <p>© 2024 CardLord Pro • <a href="https://m777sys.github.io/cardlord/">Try Free Trial →</a></p>
+        
+        <p>Current market prices for One Piece TCG. PSA 10 and ungraded values for the most liquid cards.</p>
+        
+        <h2>OP01 - Romance Dawn</h2>
+        <div class="price-table">
+            <div class="price-row price-header">
+                <span>Card</span>
+                <span>PSA 10</span>
+            </div>
+            <div class="price-row">
+                <span class="card-name">Shanks (OP01-120)</span>
+                <span class="card-price">$120</span>
+            </div>
+            <div class="price-row">
+                <span class="card-name">Luffy (OP01-001)</span>
+                <span class="card-price">$45</span>
+            </div>
+            <div class="price-row">
+                <span class="card-name">Zoro (OP01-025)</span>
+                <span class="card-price">$35</span>
+            </div>
+        </div>
+        
+        <h2>OP05 - Awakening of the New Era</h2>
+        <div class="price-table">
+            <div class="price-row price-header">
+                <span>Card</span>
+                <span>PSA 10</span>
+            </div>
+            <div class="price-row">
+                <span class="card-name">Luffy (OP05-119)</span>
+                <span class="card-price">$229</span>
+            </div>
+            <div class="price-row">
+                <span class="card-name">Kid (OP05-074)</span>
+                <span class="card-price">$61</span>
+            </div>
+        </div>
+        
+        <h2>OP06 - Wings of the Captain</h2>
+        <div class="price-table">
+            <div class="price-row price-header">
+                <span>Card</span>
+                <span>PSA 10</span>
+            </div>
+            <div class="price-row">
+                <span class="card-name">Zoro Manga (OP06-118)</span>
+                <span class="card-price">$1,850</span>
+            </div>
+            <div class="price-row">
+                <span class="card-name">Gecko Moria (OP06-086)</span>
+                <span class="card-price">$32</span>
+            </div>
+        </div>
+        
+        <p><em>Prices updated February 2026. Market values fluctuate daily.</em></p>
+        
+        <div class="cta-box">
+            <h3>Track Prices Automatically</h3>
+            <p>CardLord Pro monitors 20 liquid cards including top One Piece chase cards.</p>
+            <a href="../index.html">See CardLord Pro →</a>
+        </div>
+        
+        <footer>
+            <p>© 2026 CardLord Pro • <a href="../index.html">Back to Home</a></p>
+        </footer>
     </div>
 </body>
 </html>

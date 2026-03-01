@@ -2,230 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | CardLord Pro — eBay Price Intelligence</title>
-    <meta name="description" content="Pricing strategies, market insights, and flip opportunities for eBay TCG sellers.">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Blog | CardLord Pro</title>
     <style>
+        :root {
+            --bg: #0a0a14; --card: #13132a; --border: #1e1e3a;
+            --text: #e0e0f0; --text-dim: #8888a0; --accent: #4ecca3;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.4; }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fafafa;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px 40px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .nav {
-            background: white;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 16px 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10,10,20,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
             z-index: 100;
         }
+        .logo { font-size: 1.1rem; font-weight: 700; }
+        .logo span { color: var(--accent); }
+        .nav-link { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; }
         
-        .nav a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 0.95rem;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.2s;
-            font-weight: 500;
-        }
+        .container { padding: 70px 16px 40px; max-width: 800px; margin: 0 auto; }
         
-        .nav a:hover {
-            background: #f0f0f0;
-        }
+        .hero { text-align: center; padding: 20px 0 30px; }
+        .hero .emoji { font-size: 2.5rem; margin-bottom: 8px; }
+        .hero h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
+        .hero p { color: var(--text-dim); font-size: 0.95rem; }
         
-        .nav a.home-link {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .nav a.home-link:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-        
-        .nav a.active {
-            background: #667eea;
-            color: white;
-        }
-        
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-        
-        .intro {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .intro h2 {
-            font-size: 2rem;
-            margin-bottom: 12px;
-            color: #222;
-        }
-        
-        .intro p {
-            color: #666;
-            font-size: 1.1rem;
-        }
+        .section-title { font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px; }
         
         .post {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 24px;
-            transition: all 0.2s;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 18px;
+            margin-bottom: 12px; display: block; text-decoration: none;
+            color: var(--text); transition: border-color 0.2s;
         }
+        .post:hover { border-color: var(--accent); }
+        .post-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+        .post:hover .post-title { color: var(--accent); }
+        .post-meta { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 6px; }
+        .post-excerpt { font-size: 0.85rem; color: var(--text-dim); line-height: 1.4; }
         
-        .post:hover {
-            border-color: #667eea;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1);
-        }
-        
-        .post-title {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: #222;
-        }
-        
-        .post-title a {
-            color: #222;
-            text-decoration: none;
-        }
-        
-        .post-title a:hover {
-            color: #667eea;
-        }
-        
-        .post-meta {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-        }
-        
-        .post-excerpt {
-            color: #555;
-            line-height: 1.7;
-        }
-        
-        .read-more {
-            display: inline-block;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 16px;
-        }
-        
-        .read-more:hover {
-            text-decoration: underline;
-        }
-        
-        footer {
-            background: #1a1a2e;
-            color: #888;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .coming-soon {
-            background: #f5f5f5;
-            border: 2px dashed #ccc;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            margin-top: 40px;
-        }
-        
-        .coming-soon h3 {
-            color: #667eea;
-            margin-bottom: 12px;
-        }
-        
-        .coming-soon p {
-            color: #666;
-        }
+        footer { text-align: center; padding: 30px 20px; color: var(--text-dim); font-size: 0.75rem; }
+        footer a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1>📚 CardLord Blog</h1>
-        <p>Pricing strategies, market insights, and flip opportunities for eBay sellers</p>
-    </header>
+    <div class="topbar">
+        <a href="../index.html" class="nav-link">← Back</a>
+        <div class="logo">Card<span>Lord</span></div>
+        <a href="../free-sample.html" class="nav-link">Try Free</a>
+    </div>
     
-    <nav class="nav">
-        <a href="../cardlord.html" class="home-link">← CardLord Home</a>
-        <a href="./" class="active">Blog</a>
-    </nav>
-    
-    <main>
-        <div class="intro">
-            <h2>Latest Articles</h2>
-            <p>Learn how to optimize your eBay pricing and find flip opportunities</p>
+    <div class="container">
+        <div class="hero">
+            <div class="emoji">📚</div>
+            <h1>CardLord Blog</h1>
+            <p>Pricing strategies, market insights, and flip opportunities</p>
         </div>
         
-        <article class="post">
-            <h3 class="post-title">
-                <a href="ebay-card-pricing-guide.html">The Complete Guide to Pricing eBay Trading Cards</a>
-            </h3>
+        <div class="section-title">Latest Articles</div>
+        
+        <a href="ebay-card-pricing-guide.html" class="post">
+            <div class="post-title">The Complete Guide to Pricing eBay Trading Cards</div>
             <div class="post-meta">February 2026 • Pricing Strategy</div>
-            <p class="post-excerpt">Stop guessing your prices. Learn how to use sold comps, account for fees, and price for quick sales vs maximum profit.</p>
-            <a href="ebay-card-pricing-guide.html" class="read-more">Read more →</a>
-        </article>
+            <div class="post-excerpt">Stop guessing your prices. Learn how to use sold comps, account for fees, and price for quick sales vs maximum profit.</div>
+        </a>
         
-        <article class="post">
-            <h3 class="post-title">
-                <a href="one-piece-card-prices.html">One Piece Card Prices: OP01-OP06 Complete Guide</a>
-            </h3>
+        <a href="one-piece-card-prices.html" class="post">
+            <div class="post-title">One Piece Card Prices: OP01-OP06 Complete Guide</div>
             <div class="post-meta">February 2026 • Market Analysis</div>
-            <p class="post-excerpt">Current market prices for all One Piece TCG sets. PSA 10 and ungraded values for the most liquid cards.</p>
-            <a href="one-piece-card-prices.html" class="read-more">Read more →</a>
-        </article>
+            <div class="post-excerpt">Current market prices for all One Piece TCG sets. PSA 10 and ungraded values for the most liquid cards.</div>
+        </a>
         
-        <article class="post">
-            <h3 class="post-title">
-                <a href="when-to-sell-trading-cards.html">When to Sell Your Trading Cards: Timing the Market</a>
-            </h3>
+        <a href="when-to-sell-trading-cards.html" class="post">
+            <div class="post-title">When to Sell Your Trading Cards: Timing the Market</div>
             <div class="post-meta">February 2026 • Selling Strategy</div>
-            <p class="post-excerpt">Should you sell now or hold? Learn the signals that indicate peak prices vs waiting for better market conditions.</p>
-            <a href="when-to-sell-trading-cards.html" class="read-more">Read more →</a>
-        </article>
-    </main>
-    
-    <footer>
-        <p>© 2026 CardLord Pro • <a href="../cardlord.html">Back to CardLord Home</a></p>
-    </footer>
+            <div class="post-excerpt">Should you sell now or hold? Learn the signals that indicate peak prices vs waiting for better market conditions.</div>
+        </a>
+        
+        <footer>
+            <p>© 2026 CardLord Pro • <a href="../index.html">Back to CardLord Home</a></p>
+        </footer>
+    </div>
 </body>
 </html>
