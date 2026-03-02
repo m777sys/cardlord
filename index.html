@@ -227,6 +227,41 @@
         }
         .stat-divider { color: var(--border) !important; background: none !important; padding: 0 !important; }
 
+        /* URGENCY BANNER */
+        .urgency-banner {
+            background: linear-gradient(135deg, rgba(255,107,107,0.15) 0%, rgba(255,215,0,0.08) 100%);
+            border: 2px solid rgba(255,107,107,0.4);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 0 0 20px;
+            text-align: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.2); }
+            50% { box-shadow: 0 0 20px 0 rgba(255,107,107,0.3); }
+        }
+        .urgency-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .urgency-emoji { font-size: 1.2rem; }
+        .urgency-text { font-size: 0.85rem; }
+        .urgency-text strong { color: #ff6b6b; font-weight: 700; }
+        .countdown { font-size: 0.8rem; color: var(--text-dim); }
+        .countdown-time {
+            font-family: monospace;
+            background: rgba(255,107,107,0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #ffd93d;
+            font-weight: 600;
+        }
+
         /* PRICING - Horizontal swipe */
         .pricing-scroll {
             display: flex; gap: 10px; overflow-x: auto;
@@ -325,6 +360,18 @@
             <div class="proof-separator">•</div>
             <div class="proof-item">
                 <span class="proof-badge">As seen on r/pokemontcg</span>
+            </div>
+        </div>
+
+        <!-- URGENCY BANNER -->
+        <div class="urgency-banner">
+            <div class="urgency-content">
+                <span class="urgency-emoji">🚨</span>
+                <span class="urgency-text"><strong>8 Beta spots left</strong> at $49/mo — Price jumps to $149 when they're gone</span>
+            </div>
+            <div class="countdown" id="countdown">
+                <span>⏰ Expires: </span>
+                <span class="countdown-time" id="countdownTime">March 15, 2026</span>
             </div>
         </div>
 
