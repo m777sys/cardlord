@@ -466,8 +466,62 @@ Kid OP05-074 Alt Art, $57.96</textarea>
                 return;
             }
             
-            alert('✅ Analysis request sent to ' + email + '!\n\nWe\'ll send your full analysis shortly.');
+            // Capture lead data
+            const lead = {
+                email: email,
+                timestamp: new Date().toISOString(),
+                source: 'free-sample',
+                itemsAnalyzed: document.getElementById('analyzedCount')?.textContent || '0',
+                savingsDetected: document.getElementById('totalLoss')?.textContent || 'C$0'
+            };
+            
+            // Store in localStorage for persistence
+            let leads = JSON.parse(localStorage.getItem('cardlord_leads') || '[]');
+            leads.push(lead);
+            localStorage.setItem('cardlord_leads', JSON.stringify(leads));
+            
+            // Log to console for export
+            console.log('✅ New Lead Captured:', lead);
+            console.log('All leads:', JSON.stringify(leads, null, 2));
+            
+            // Try to save to file (will work locally, silent fail on static hosting)
+            try {
+                const blob = new Blob([JSON.stringify(lead) + '\n'], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'cardlord-lead-' + Date.now() + '.json';
+                document.body.appendChild(a);
+                a.click();
+                URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (e) {
+                // Silent fail
+            }
+            
+            alert('✅ Thanks ' + email + '!\n\nYour email is saved. Check console or downloads for export.');
             window.location.href = '/cardlord/';
+        }
+
+        // Admin function to export all leads
+        function exportLeads() {
+            const leads = JSON.parse(localStorage.getItem('cardlord_leads') || '[]');
+            console.log('=== CARDLORD LEADS EXPORT ===');
+            console.log(JSON.stringify(leads, null, 2));
+            console.log('Total leads:', leads.length);
+            
+            // Download as file
+            const blob = new Blob([JSON.stringify(leads, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cardlord-leads-' + new Date().toISOString().split('T')[0] + '.json';
+            document.body.appendChild(a);
+            a.click();
+            URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            return leads;
         }
     </script>
 </body>
