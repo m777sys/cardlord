@@ -305,6 +305,24 @@ Kid OP05-074 Alt Art, $57.96</textarea>
             <span>📧 Optional email signup</span>
         </div>
 
+        <!-- Admin Section - Hidden by default, access via console or click -->
+        <details style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+            <summary style="cursor: pointer; color: #888; font-size: 14px;">📊 Admin: Manage Leads</summary>
+            
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="showLeads()" style="padding: 10px 20px; background: #4ecca3; color: #1a1a2e; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">📋 View Leads</button>
+                    <button onclick="copyLeads()" style="padding: 10px 20px; background: #ffd93d; color: #1a1a2e; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">📋 Copy to Clipboard</button>
+                </div>
+                
+                <textarea id="leadsExport" style="display: none; width: 100%; min-height: 200px; padding: 15px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #4ecca3; font-family: monospace; font-size: 12px; white-space: pre-wrap;"></textarea>
+                
+                <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                    💡 Tip: You can also type <code style="color: #4ecca3;">exportLeads()</code> in browser console (F12)
+                </p>
+            </div>
+        </details>
+
         <footer>
             Powered by CardLord • Price data from PriceCharting & TCGDex
         </footer>
@@ -522,6 +540,34 @@ Kid OP05-074 Alt Art, $57.96</textarea>
             document.body.removeChild(a);
             
             return leads;
+        }
+
+        // Simple copy function for leads
+        function copyLeads() {
+            const leads = JSON.parse(localStorage.getItem('cardlord_leads') || '[]');
+            const jsonString = JSON.stringify(leads, null, 2);
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(jsonString).then(() => {
+                alert('✅ Leads copied to clipboard!\nTotal: ' + leads.length + ' leads\n\nPaste them to 7 now.');
+            }).catch(() => {
+                // Fallback: select and copy
+                const textArea = document.getElementById('leadsExport');
+                textArea.value = jsonString;
+                textArea.style.display = 'block';
+                textArea.select();
+                document.execCommand('copy');
+                alert('✅ Leads copied! Paste them to 7 now.');
+            });
+        }
+
+        // Show leads in textarea for manual copy
+        function showLeads() {
+            const leads = JSON.parse(localStorage.getItem('cardlord_leads') || '[]');
+            const textArea = document.getElementById('leadsExport');
+            textArea.value = JSON.stringify(leads, null, 2);
+            textArea.style.display = 'block';
+            alert('Leads loaded: ' + leads.length + ' total\n\nCopy the text below 👇');
         }
     </script>
 </body>
